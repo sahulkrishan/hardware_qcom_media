@@ -2738,7 +2738,6 @@ bool venc_dev::venc_empty_buf(void *buffer, void *pmem_data_buf, unsigned index,
                 }
             } else if (!color_format) {
 		int color_space = 0;
-
                 if ((meta_buf->buffer_type == kMetadataBufferTypeCameraSource) ||
                         (meta_buf->buffer_type == kMetadataBufferTypeNativeHandleSource)) {
                     if (meta_buf->meta_handle->numFds + meta_buf->meta_handle->numInts > 3 &&
@@ -2748,6 +2747,7 @@ bool venc_dev::venc_empty_buf(void *buffer, void *pmem_data_buf, unsigned index,
 		    }
 
                     if (meta_buf->meta_handle->numFds + meta_buf->meta_handle->numInts > 2) {
+                if (meta_buf->buffer_type == kMetadataBufferTypeCameraSource) {
                     plane.data_offset = meta_buf->meta_handle->data[1];
                     plane.length = meta_buf->meta_handle->data[2];
                     plane.bytesused = meta_buf->meta_handle->data[2];
